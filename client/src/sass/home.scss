@@ -1,0 +1,42 @@
+@import './style';
+
+html, body, #root {
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+.slider {
+  display: flex;
+  gap: .25rem;
+
+  .slider-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb($primary, .8);
+    color: #fff;
+    height: 100%;
+    min-width: 40px;
+    border: none;
+    border-radius: .25rem;
+    opacity: 0;
+    transition: opacity .2s ease;
+  }
+
+  &:hover {
+    .slider-btn {
+      opacity: 1;
+    }
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .slider .slider-btn {
+    opacity: 1;
+  }
+}

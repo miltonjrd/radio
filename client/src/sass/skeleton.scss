@@ -1,0 +1,32 @@
+.skeleton {
+  background: #ececec !important;
+  cursor: auto !important;
+  box-shadow: none;
+  border: none;
+
+  &.skeleton-circle-sm {
+    height: 45px;
+    width: 45px;
+    border-radius: 55rem;
+  }
+
+  &.skeleton-inline {
+    height: 20px;
+    width: 100%;
+    border-radius: .25rem;
+  }
+
+  &.skeleton-inline-sm {
+    height: 16px;
+    border-radius: .25rem;
+  }
+
+  & > * {
+    visibility: hidden;
+  }
+
+  &:hover {
+    background: inherit;
+    box-shadow: none;
+  }
+}

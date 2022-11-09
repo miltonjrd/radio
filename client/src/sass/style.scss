@@ -1,0 +1,32 @@
+$primary: #801de9;
+$purple: #801de9;
+
+$input-focus-border-color: $primary;
+$input-box-shadow: none;
+$input-focus-box-shadow: none;
+
+$form-floating-label-color: $primary;
+
+$form-select-focus-box-shadow: none;
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+input, textarea, select {
+  &:focus {
+    outline: 0;
+  }
+}
+
+.show-on-mobile { 
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  .show-on-mobile {
+    display: inherit;
+  }
+}

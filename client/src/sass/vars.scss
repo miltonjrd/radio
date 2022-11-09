@@ -1,0 +1,114 @@
+$bg-primary-light: #fff;
+$bg-secondary-light: #fbfbfb;
+$bg-lighter-light: #fff;
+$text-light: #000;
+$border-light: #dee2e6;
+
+$bg-primary-dark: #0f0c1f;
+$bg-secondary-dark: #161032;
+$bg-lighter-dark: #161032;
+$text-dark: #fff;
+$border-dark: #30285b;
+
+$themes: (
+  light: (
+    bg-primary: $bg-primary-light,
+    bg-secondary: $bg-secondary-light,
+    bg-lighter: $bg-lighter-light,
+    text: $text-light,
+    border: $border-light
+  ),
+  dark: (
+    bg-primary: $bg-primary-dark,
+    bg-secondary: $bg-secondary-dark,
+    bg-lighter: $bg-lighter-dark,
+    text: $text-dark,
+    border: $border-dark
+  )
+);
+
+@mixin variables($themes) {
+  @each $theme, $map in $themes {
+    & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        
+        $value: map-get(map-get($themes, $theme), $key);
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@mixin themify($themes) {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        
+        $value: map-get(map-get($themes, $theme), $key);
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}
+
+
+.theme-bg-primary {
+  @include themify($themes) {
+    background: themed('bg-primary');
+  }
+}
+
+.theme-bg-secondary {
+  @include themify($themes) {
+    background: themed('bg-secondary');
+  }
+}
+
+.theme-bg-lighter {
+  @include themify($themes) {
+    background: themed('bg-lighter');
+  }
+}
+
+.theme-text {
+  @include themify($themes) {
+    color: themed('text');
+  }
+}
+
+.theme-border {
+  @include themify($themes) {
+    border: 1px solid themed('border');
+  }
+}
+
+.theme-border-color {
+  @include themify($themes) {
+    border-color: themed('border') !important;
+  }
+}
+
+.hover-themed-btn:hover {
+  @include themify($themes) {
+    background: themed('bg-secondary') !important;
+  }
+}
+
+* {
+  @include variables($themes) {
+    --theme-bg-primary: #{themed('bg-primary')};
+    --theme-bg-secondary: #{themed('bg-secondary')};
+    --theme-border: #{themed('border')};
+    --theme-bg-black: #000;
+  }
+}

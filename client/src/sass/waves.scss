@@ -1,0 +1,37 @@
+.wave {
+  position: absolute;
+  height: 150px;
+  width: 100%;
+  animation: shake 5s infinite;
+
+  @keyframes shake {
+    0% {
+      transform: scale(1.2) translateX(-50px);
+    }
+    50% {
+      transform: scale(1.2) translateX(50px);
+    }
+    100% {
+      transform: scale(1.2) translateX(-50px);
+    }
+  }
+
+  &.wave-variation {
+    opacity: .5;
+    animation: shake-variation 8s infinite;
+
+    @keyframes shake-variation {
+      0% {
+        transform: scale(1.2) scaleX(-1) translateY(-20px) translateX(-50px) ;
+      }
+      50% {
+        transform: scale(1.2) scaleX(-1) translateY(-20px) translateX(50px);
+      }
+      100% {
+        transform: scale(1.2) scaleX(-1) translateY(-20px) translateX(-50px);
+      }
+    }
+  }
+
+  
+}
